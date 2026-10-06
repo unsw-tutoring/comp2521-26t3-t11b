@@ -8,17 +8,26 @@ struct node {
     struct node *right;
 };
 
+// returns the number of values in a binary search tree
+int bstCountNodes(struct node *t) {
+    if (t == NULL) return 0;
+    return 1 + bstCountNodes(t->left) + bstCountNodes(t->right);
+}
+
 // returns the number of odd values in a binary search tree
 int bstCountOdds(struct node *t) {
-    // TODO
-    return 0;
+    if (t == NULL) return 0;
+    if (t->elem % 2 == 1)
+        return 1 + bstCountOdds(t->left) + bstCountOdds(t->right);
+    return bstCountOdds(t->left) + bstCountOdds(t->right);
 }
 
 // count number of internal nodes in a given tree
 // an internal node is a node with at least one child node
 int bstCountInternal(struct node *t) {
-    // TODO
-    return 0;
+    if (t == NULL) return 0;
+    if (t->left == NULL && t->right == NULL) return 0;
+    return 1 + bstCountInternal(t->left) + bstCountInternal(t->right);
 }
 
 // returns the level of the node containing a given key if such a node exists,

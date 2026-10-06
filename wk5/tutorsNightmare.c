@@ -7,16 +7,16 @@ struct Node {
 };
 
 void freeList(struct Node *head) {
-	if (head == NULL) {
-	return;
-	}
-	// Frees the list by iterating through the list, using a temporary element and freeing the elements by using free (hopefully this comment is useful and helps out)
-	struct Node *Temp = head;
-	while (head != NULL) {
-	    Temp = head;
-	    head = head->next;
-	    free(Temp);
-	}
+    if (head == NULL) {
+        return;
+    }
+    // Frees the list by iterating through the list, using a temporary element and freeing the elements by using free (hopefully this comment is useful and helps out)
+    struct Node *Temp = head;
+    while (head != NULL) {
+        Temp = head;
+        head = head->next;
+        free(Temp);
+    }
 }
 void print_list(struct Node *node) {
     while (node->next != NULL) {
@@ -33,24 +33,24 @@ struct Node *add(struct Node *a, int data) {
     newNode->data = data;
     // set the node's next field to NULL
     newNode->next = NULL;
-        if (a == NULL) {
-            a = newNode;
-        } else {
-            struct Node *lastNode = a;
-            while (lastNode->next != NULL) {
-                lastNode = lastNode->next;
-            }
-            lastNode->next = newNode;
+    if (a == NULL) {
+        a = newNode;
+    } else {
+        struct Node *lastNode = a;
+        while (lastNode->next != NULL) {
+            lastNode = lastNode->next;
         }
-        return a;
+        lastNode->next = newNode;
+    }
+    return a;
 }
 int main() {
-	struct Node *head = NULL;
-	head = add(head, 1);
-	head = add(head, 2);
-	head = add(head, 3);
-	head = add(head, 4);
-	print_list(head);
-	freeList(head);
-	return 0;
+    struct Node *head = NULL;
+    head = add(head, 1);
+    head = add(head, 2);
+    head = add(head, 3);
+    head = add(head, 4);
+    print_list(head);
+    freeList(head);
+    return 0;
 }
